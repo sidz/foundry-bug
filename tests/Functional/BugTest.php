@@ -11,7 +11,7 @@ use App\Tests\Factory\ReleaseTrackFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Zenstruck\Foundry\Test\Factories;
 
-class BugTestCase extends KernelTestCase
+class BugTest extends KernelTestCase
 {
     use Factories;
 
