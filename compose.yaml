@@ -1,0 +1,26 @@
+services:
+  php:
+    build:
+      context: .
+      target: php_base
+    depends_on:
+      - db
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: ${DATABASE_URL}
+    volumes:
+      - './:/app:rw,cached'
+  db:
+    image: mysql:8.4
+    volumes:
+      - db-data:/var/lib/mysql:rw
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_ROOT_PASSWORD: pwd
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
+
+volumes:
+  db-data: { }
